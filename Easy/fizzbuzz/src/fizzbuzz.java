@@ -2,8 +2,13 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.System.exit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static java.util.logging.Logger.getLogger;
 
 /*
  * To change this template, choose Tools | Templates
@@ -23,9 +28,9 @@ public class fizzbuzz {
             BufferedReader input = new BufferedReader(new FileReader(args[0]));
             while (input.ready()) {
                 String[] numbers = input.readLine().split(" ");
-                int fizz = Integer.parseInt(numbers[0]);
-                int buzz = Integer.parseInt(numbers[1]);
-                int limit = Integer.parseInt(numbers[2]);
+                int fizz = parseInt(numbers[0]);
+                int buzz = parseInt(numbers[1]);
+                int limit = parseInt(numbers[2]);
 
                 for (int counter = 1; counter <= limit; counter++) {
                     if (!(counter % fizz == 0 || counter % buzz == 0)) {
@@ -46,8 +51,8 @@ public class fizzbuzz {
 
             }
         } catch (IOException ex) {
-            Logger.getLogger(fizzbuzz.class.getName()).log(Level.SEVERE, null, ex);
-            System.exit(1);
+            getLogger(fizzbuzz.class.getName()).log(Level.SEVERE, null, ex);
+            exit(1);
         }
     }
 }
