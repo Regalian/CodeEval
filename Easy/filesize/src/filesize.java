@@ -5,6 +5,8 @@
 
 
 import java.io.File;
+import java.util.logging.Logger;
+import static java.util.logging.Logger.getLogger;
 
 /**
  *
@@ -19,4 +21,5 @@ public class filesize {
         File file = new File(args[0]);
         System.out.println(file.length());
     }
+    private static final Logger LOG = getLogger(filesize.class.getName());
 }
