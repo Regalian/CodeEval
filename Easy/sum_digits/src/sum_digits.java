@@ -2,8 +2,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import static java.lang.System.exit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static java.util.logging.Logger.getLogger;
 
 /*
  * To change this template, choose Tools | Templates
@@ -30,8 +32,8 @@ public class sum_digits {
                 System.out.println(sum);
             }
         } catch (IOException ex) {
-            Logger.getLogger(sum_digits.class.getName()).log(Level.SEVERE, null, ex);
-            System.exit(1);
+            getLogger(sum_digits.class.getName()).log(Level.SEVERE, null, ex);
+            exit(1);
         }
     }
 }
