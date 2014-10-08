@@ -2,8 +2,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static java.util.logging.Logger.getLogger;
 
 /*
  * To change this template, choose Tools | Templates and open the template in
@@ -34,11 +37,11 @@ public class array_absurdity {
                 final String inputLine = input.readLine();
                 if (inputLine.length() > 0) {
                     final String[] inputs = inputLine.split(";");
-                    final int n = Integer.parseInt(inputs[0]);
+                    final int n = parseInt(inputs[0]);
                     final int[] counts = new int[n - 1];
                     final String[] entries = inputs[1].split(",");
                     for (String entry : entries) {
-                        final int index = Integer.parseInt(entry);
+                        final int index = parseInt(entry);
                         counts[index]++;
                         if (counts[index] > 1) {
                             System.out.println(index);
@@ -48,7 +51,7 @@ public class array_absurdity {
                 }
             }
         } catch (IOException ex) {
-            Logger.getLogger(array_absurdity.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(array_absurdity.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
