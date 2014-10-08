@@ -2,8 +2,11 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
+import static java.lang.System.exit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static java.util.logging.Logger.getLogger;
 
 /*
  * To change this template, choose Tools | Templates
@@ -14,6 +17,7 @@ import java.util.logging.Logger;
  * @author richard
  */
 public class fibonacci {
+    private static final Logger LOG = getLogger(fibonacci.class.getName());
 
     /**
      * @param args the command line arguments
@@ -26,11 +30,11 @@ public class fibonacci {
         try {
             BufferedReader input = new BufferedReader(new FileReader(args));
             while (input.ready()) {
-                System.out.println(fibo(Integer.parseInt(input.readLine())));
+                System.out.println(fibo(parseInt(input.readLine())));
             }
         } catch (IOException ex) {
-            Logger.getLogger(fibonacci.class.getName()).log(Level.SEVERE, null, ex);
-            System.exit(1);
+            getLogger(fibonacci.class.getName()).log(Level.SEVERE, null, ex);
+            exit(1);
         }        
     }
 
