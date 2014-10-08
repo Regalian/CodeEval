@@ -2,10 +2,12 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import static java.lang.System.exit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static java.util.logging.Logger.getLogger;
 
 /*
  * To change this template, choose Tools | Templates
@@ -27,7 +29,7 @@ public class happy_numbers {
     private void run(final String inputFile) {
         try {
             final BufferedReader input = new BufferedReader(new FileReader(inputFile));
-            final List<Integer> seenNumbers = new ArrayList<Integer>();
+            final List<Integer> seenNumbers = new ArrayList<>();
             while (input.ready()) {
                 String inputLine = input.readLine();
                 seenNumbers.clear();
@@ -46,8 +48,8 @@ public class happy_numbers {
                 }
             }
         } catch (IOException ex) {
-            Logger.getLogger(happy_numbers.class.getName()).log(Level.SEVERE, null, ex);
-            System.exit(1);
+            getLogger(happy_numbers.class.getName()).log(Level.SEVERE, null, ex);
+            exit(1);
         }
     }
 
