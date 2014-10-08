@@ -5,8 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
+import static java.util.Arrays.sort;
+import static java.util.Collections.sort;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import static java.util.logging.Logger.getLogger;
 
 /*
  * To change this template, choose Tools | Templates and open the template in
@@ -18,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class cash_register {
 
-    private BufferedReader input;
+    private final BufferedReader input;
 
     public cash_register(String inputFilename) throws FileNotFoundException {
         input = new BufferedReader(new FileReader(inputFilename));
@@ -26,6 +28,7 @@ public class cash_register {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException {
         new cash_register(args[0]).run();
@@ -44,30 +47,20 @@ public class cash_register {
                     System.out.println("ERROR");
                 } else {
                     final List<Change> changeList = calculateChange(change);
-                    Collections.sort(changeList, new Comparator<Change>() {
-
-                        public int compare(Change o1, Change o2) {
-                            return o1.getName().compareTo(o2.getName());
-                        }
-                    });
+                    sort(changeList, (Change o1, Change o2) -> o1.getName().compareTo(o2.getName()));
                     final String output = formatChangeList(changeList);
                     System.out.println(output);
                 }
             }
         } catch (IOException ex) {
-            Logger.getLogger(cash_register.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(cash_register.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private List<Change> calculateChange(BigDecimal change) {
-        List<Change> changeList = new ArrayList<Change>();
+        List<Change> changeList = new ArrayList<>();
         Change[] possibleValues = Change.values();
-        Arrays.sort(possibleValues, new Comparator<Change>() {
-
-            public int compare(Change o1, Change o2) {
-                return o2.getValue().compareTo(o1.getValue());
-            }
-        });
+        sort(possibleValues, (Change o1, Change o2) -> o2.getValue().compareTo(o1.getValue()));
         for (Change value : possibleValues) {
             while (change.compareTo(value.getValue()) >= 0) {
                 changeList.add(value);
@@ -93,8 +86,8 @@ public class cash_register {
         ONE("ONE", "1.00"), TWO("TWO", "2.00"), FIVE("FIVE", "5.00"),
         TEN("TEN", "10.00"), TWENTY("TWENTY", "20.00"), FIFTY("FIFTY", "50.00"),
         ONE_HUNDRED("ONE HUNDRED", "100.00");
-        private String name;
-        private BigDecimal value;
+        private final String name;
+        private final BigDecimal value;
 
         Change(String name, String value) {
             this.name = name;
