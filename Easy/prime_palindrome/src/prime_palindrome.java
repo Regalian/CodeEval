@@ -1,6 +1,8 @@
 
+import static java.lang.Math.sqrt;
 import java.util.ArrayList;
 import java.util.Collections;
+import static java.util.Collections.reverse;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -25,7 +27,7 @@ public class prime_palindrome {
 
     void run() {
         List<Integer> primes = find_primes(1000);
-        Collections.reverse(primes);
+        reverse(primes);
         for (int prime: primes) {
             if (isPalindrome(prime)) {
                 System.out.println(prime);
@@ -35,17 +37,17 @@ public class prime_palindrome {
     }
 
     List<Integer> find_primes(int maxPrime) {
-        List<Integer> primes = new ArrayList<Integer>();
-        List<Integer> possiblePrimes = new ArrayList<Integer>(maxPrime / 2);
+        List<Integer> primes = new ArrayList<>();
+        List<Integer> possiblePrimes = new ArrayList<>(maxPrime / 2);
         primes.add(2);
         for (int possible = 3; possible <= maxPrime; possible+=2) {
             possiblePrimes.add(possible);
         }
         int nextPrime = possiblePrimes.remove(0);
         primes.add(nextPrime);
-        while (nextPrime < Math.sqrt(maxPrime + 1)) {
+        while (nextPrime < sqrt(maxPrime + 1)) {
             ListIterator<Integer> it = possiblePrimes.listIterator();
-            List<Integer> toRemove = new ArrayList<Integer>();
+            List<Integer> toRemove = new ArrayList<>();
             while (it.hasNext()) {
                 int possiblePrime = it.next();
                 if (possiblePrime % nextPrime == 0) {
