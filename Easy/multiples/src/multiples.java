@@ -2,8 +2,12 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.System.exit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static java.util.logging.Logger.getLogger;
 
 /*
  * To change this template, choose Tools | Templates
@@ -23,8 +27,8 @@ public class multiples {
             BufferedReader input = new BufferedReader(new FileReader(args[0]));
             while (input.ready()) {
                 String[] numbers = input.readLine().split(",");
-                int x = Integer.parseInt(numbers[0]);
-                int n = Integer.parseInt(numbers[1]);
+                int x = parseInt(numbers[0]);
+                int n = parseInt(numbers[1]);
                 int current = n;
                 while (x > current) {
                     current += n;
@@ -32,8 +36,8 @@ public class multiples {
                 System.out.println(current);
             }
         } catch (IOException ex) {
-            Logger.getLogger(multiples.class.getName()).log(Level.SEVERE, null, ex);
-            System.exit(1);
+            getLogger(multiples.class.getName()).log(Level.SEVERE, null, ex);
+            exit(1);
         }
     }
 }
