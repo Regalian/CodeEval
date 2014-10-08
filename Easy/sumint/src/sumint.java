@@ -2,8 +2,11 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
+import static java.lang.System.exit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static java.util.logging.Logger.getLogger;
 
 /*
  * To change this template, choose Tools | Templates
@@ -23,12 +26,12 @@ public class sumint {
             BufferedReader input = new BufferedReader(new FileReader(args[0]));
             int sum = 0;
             while (input.ready()) {
-                sum += Integer.parseInt(input.readLine());
+                sum += parseInt(input.readLine());
             }
             System.out.println(sum);
         } catch (IOException ex) {
-            Logger.getLogger(sumint.class.getName()).log(Level.SEVERE, null, ex);
-            System.exit(1);
+            getLogger(sumint.class.getName()).log(Level.SEVERE, null, ex);
+            exit(1);
         }
     }
 }
