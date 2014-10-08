@@ -1,4 +1,5 @@
 
+import static java.lang.Math.sqrt;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -30,8 +31,8 @@ public class sum_prime {
     }
 
     List<Integer> find_primes(int numPrime) {
-        List<Integer> primes = new ArrayList<Integer>();
-        List<Integer> possiblePrimes = new ArrayList<Integer>(1024);
+        List<Integer> primes = new ArrayList<>();
+        List<Integer> possiblePrimes = new ArrayList<>(1024);
         primes.add(2);
         int batchSize = 256;
         int lower = 3;
@@ -48,9 +49,9 @@ public class sum_prime {
             }
             int nextPrime = possiblePrimes.remove(0);
             primes.add(nextPrime);
-            while (nextPrime < Math.sqrt(upper + 1)) {
+            while (nextPrime < sqrt(upper + 1)) {
                 ListIterator<Integer> it = possiblePrimes.listIterator();
-                List<Integer> toRemove = new ArrayList<Integer>();
+                List<Integer> toRemove = new ArrayList<>();
                 while (it.hasNext()) {
                     int possiblePrime = it.next();
                     if (possiblePrime % nextPrime == 0) {
